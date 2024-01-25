@@ -1,0 +1,273 @@
+---
+title: "Exercise 3 -- Classification I"
+subtitle: "[Introduction to Machine Learning](https://slds-lmu.github.io/i2ml/)"
+---
+
+::: {.content-hidden when-format="pdf"}
+::: {.hidden}
+{{< include ../_quarto/latex-math.qmd >}}
+:::
+:::
+
+## Exercise 1: Logistic vs Softmax Regression [only for lecture group A]
+Exercise 1: Logistic vs Softmax Regression [only for lecture group A]
+
+Binary logistic regression is a special case of multiclass logistic, or softmax, regression. The softmax function is the multiclass analogue to the logistic function, transforming scores $\thetab^\top \xv$ to values in the range [0, 1] that sum to one. The softmax function is defined as:
+
+$$
+\pi_k(\xv | \thetab) = \frac{\exp(\thetab_k^\top \xv)}{\sum_{j=1}^{g} \exp(\thetab_j^\top \xv)}, k \in \{1,...,g\}
+$$
+
+Show that logistic and softmax regression are equivalent for $g = 2$.
+
+::: {.callout-note title="Learning goals" icon=false}
+TBD
+:::
+
+::: {.content-visible when-profile="solution"}
+<details> 
+<summary>**Solution**</summary>
+<!-- ::: {.panel-tabset} -->
+As we would expect, the two formulations are equivalent (up to reparameterization). In order to see this, consider the softmax function components for both classes:
+
+$$
+\pi_1(\xv | \thetab) = \frac{\exp(\thetab_1^\top \xv)}{\exp(\thetab_1^\top \xv) + \exp(\thetab_2^\top \xv)}
+$$
+
+$$
+\pi_2(\xv | \thetab) = \frac{\exp(\thetab_2^\top \xv)}{\exp(\thetab_1^\top \xv) + \exp(\thetab_2^\top \xv)}
+$$
+
+Since we know that $\pi_1(\xv | \thetab) + \pi_2(\xv | \thetab) = 1$, it is sufficient to compute one of the two scoring functions. Let’s pick $\pi_1(\xv | \thetab)$ and relate it to the logistic function:
+
+$$
+\pi_1(\xv | \thetab) = \frac{1}{1 + \exp(\thetab_2^\top \xv - \thetab_1^\top \xv)} = \frac{1}{1 + \exp(-\thetab^\top \xv)}
+$$
+
+where $\thetab := \thetab_1 - \thetab_2$. Thus, we obtain the binary-case logistic function, reflecting that we only need one scoring function (and thus one set of parameters $\thetab$ rather than two $\thetab_1, \thetab_2$).
+</details> 
+:::
+
+## Exercise 2: Hyperplanes [only for lecture group B]
+
+::: {.callout-note title="Learning goals" icon=false}
+TBD
+:::
+
+Linear classifiers like logistic regression learn a decision boundary that takes the form of a (linear) hyperplane. Hyperplanes are defined by equations $\thetab^\top \xv = b$ with coefficients $\thetab$ and a scalar $b \in \mathbb{R}$.
+
+In order to see that such expressions actually describe hyperplanes, consider $\thetab^\top \xv = \theta_0 + \theta_1 x_1 + \theta_2 x_2 = 0$. Sketch the hyperplanes given by the following coefficients and explain the difference between the parameterizations:
+
+- $\theta_0 = 0, \theta_1 = \theta_2 = 1$
+- $\theta_0 = 1, \theta_1 = \theta_2 = 1$
+- $\theta_0 = 0, \theta_1 = 1, \theta_2 = 2$
+  
+::: {.content-visible when-profile="solution"}
+<details> 
+<summary>**Solution**</summary>
+
+A hyperplane in 2D is just a line. We know that two points are sufficient to describe a line, 
+so all we need to do is pick two points fulfilling the hyperplane equation.
+
+- $\theta_0 = 0, \theta_1 = \theta_2 = 1$ $\rightsquigarrow$ e.g., (0, 0) and (1, -1). Sketch it:
+```{r, echo=FALSE, fig.height=3, fig.width=3}
+library(ggplot2)
+p = ggplot(data.frame(x = c(0, 1), y = c(0, -1)), aes(x, y)) +
+  geom_point(shape = "cross") +
+  geom_abline(intercept = 0, slope = -1, linetype = 2) +
+  xlim(c(-2, 2)) +
+  ylim(c(-2, 2)) +
+  labs(x = "x1", y = "x2") +
+  theme_bw()
+p
+```
+
+- $\theta_0 = 1, \theta_1 = \theta_2 = 1$ $\rightsquigarrow$ e.g., (0, -1) and (1, -2). The change in $\theta_0$ promotes a horizontal shift:
+```{r, echo=FALSE, fig.height=3, fig.width=3}
+library(ggplot2)
+p = ggplot(data.frame(x = c(0, 1), y = c(0, -1)), aes(x, y)) +
+  geom_point(shape = "cross") +
+  geom_abline(intercept = 0, slope = -1, linetype = 2) +
+  xlim(c(-2, 2)) +
+  ylim(c(-2, 2)) +
+  labs(x = "x1", y = "x2") +
+  theme_bw()
+q = p + geom_point(
+  data.frame(x = c(0, 1), y = c(-1, -2)), 
+  mapping = aes(x, y), 
+  shape = "cross", 
+  col = "red"
+  ) +
+  geom_abline(intercept = -1, slope = -1, col = "red", linetype = 2) 
+q
+```
+
+- $\theta_0 = 0, \theta_1 = 1, \theta_2 = 2$ $\rightsquigarrow$ e.g., (0, 0) and (1, -0.5). The change in $\theta_2$ pivots the line around the intercept:
+```{r, echo=FALSE, fig.height=3, fig.width=3}
+library(ggplot2)
+p = ggplot(data.frame(x = c(0, 1), y = c(0, -1)), aes(x, y)) +
+  geom_point(shape = "cross") +
+  geom_abline(intercept = 0, slope = -1, linetype = 2) +
+  xlim(c(-2, 2)) +
+  ylim(c(-2, 2)) +
+  labs(x = "x1", y = "x2") +
+  theme_bw()
+q = p + geom_point(
+  data.frame(x = c(0, 1), y = c(-1, -2)), 
+  mapping = aes(x, y), 
+  shape = "cross", 
+  col = "red"
+  ) +
+  geom_abline(intercept = -1, slope = -1, col = "red", linetype = 2) 
+r = q + geom_point(
+  data.frame(x = c(0, 1), y = c(0, -0.5)), 
+  mapping = aes(x, y), 
+  shape = "cross", 
+  col = "blue"
+  ) +
+  geom_abline(intercept = 0, slope = -0.5, col = "blue", linetype = 2) 
+r
+```
+
+We see that a hyperplane is defined by the points that lie directly on it and thus fulfill the hyperplane equation.
+
+</details> 
+:::
+
+## Exercise 3: Decision Boundaries & Thresholds in Logisitc Regression
+
+::: {.callout-note title="Learning goals" icon=false}
+TBD
+:::
+
+In logistic regression (binary case), we estimate the probability $P(y = 1 | \xv, \thetab) = \pi(\xv | \theta)$. In order to decide about
+the class of an observation, we set $\hat{y} = 1$ iff $\pi(x | \theta) \geq \alpha\) for some \(\alpha \in (0, 1)$.
+
+a) Show that the decision boundary of the logistic classifier is a (linear) hyperplane.
+Hint: derive the value of $\thetab^T\xv$ (depending on $\alpha$) starting from which you predict $\hat{y} = 1$ rather than $\hat{y} = 0$.
+
+b) Below you see the logistic function for a binary classification problem with two input features for different values $\thetab = (\theta_1, \theta_2)$ (plots 1-3) as well as $\alpha$ (plot 4). What can you deduce for the values of $\theta_1$, $\theta_2$, and $\alpha$? What are the implications for classification in the different scenarios?
+
+```{r, echo=FALSE, fig.height=3, fig.width=3, message=FALSE, warning=FALSE}
+#| layout-nrow: 2
+suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(tidyr))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(akima))
+
+options(warn=-1)
+
+# define x and different theta configurations
+seq_x <- seq(-10L, 10L, length.out = 100L)
+theta <- list(
+  theta_1 = c(0.3, 0),
+  theta_2 = c(0.3, 0.3),
+  theta_3 = c(0.8, 0.8))
+
+plot_3d <- function(x, theta, eye = list(x = -1.5, y = 3L, z = 1L)) {
+  
+  # specify softmax operation
+  
+  compute_softmax <- function(X, theta) 1 / (1 + exp(-(X %*% theta)))
+  
+  # use akima interpolation to create surface from 3d points
+  
+  dens <- expand.grid(x_1 = x, x_2 = x)
+  dens$z <- apply(as.matrix(dens), 1L, compute_softmax, theta = theta)
+  d <- akima::interp(x = dens$x_2, y = dens$x_1, z = dens$z)
+  
+  # define perspective plot is viewed from
+  
+  scene = list(
+    camera = list(eye = eye),
+    xaxis = list(title = "x1"),
+    yaxis = list(title = "x2"),
+    zaxis = list(title = "s(f(x1,x2))"))
+  
+  # define color
+  
+  my_palette = c("cornflowerblue", "blue4")
+  
+  # plot
+  
+  plotly::plot_ly(x = d$x, y = d$y, z = d$z) %>%
+    add_surface(
+      showscale = FALSE,
+      colors = my_palette
+      ) %>%
+    layout(scene = scene)
+  
+}
+
+# saving plotly objects requires orca installation, which might not work on 
+# every device
+# here: open the respective plot in your browser (clicking on "show in new 
+# window" in the viewer pane) and save snapshot via the camera symbol without 
+# zooming
+
+p_1 <- plot_3d(seq_x, theta$theta_1)
+p_2 <- plot_3d(seq_x, theta$theta_2)
+p_3 <- plot_3d(seq_x, theta$theta_3)
+
+# add hyperplanes marking decision boundaries for different thresholds
+# use dirty trick with points, cannot get it to work with actual surface :]
+
+add_vertical_hyperplane <- function(plot, 
+                                    n_points = 100L, 
+                                    theta_1 = 0.3, 
+                                    threshold = 0.5) {
+  
+  y_vert <- seq(-10L, 10L, length.out = n_points)
+  z_vert <- seq(0L, threshold, length.out = n_points)
+  yz_vert <- expand.grid(y_vert, z_vert)
+  
+  plot %>%
+  add_trace(
+    inherit = FALSE,
+    x = rep((- 1 / theta_1 * log(1 / threshold - 1)), n_points^2),
+    y = yz_vert[, 1],
+    z = yz_vert[, 2],
+    marker = list(
+      type = "marker",
+      mode = "scatter3d",
+      color = "gray",
+      size = 0.8),
+    showlegend = FALSE) %>%
+    add_trace(
+      inherit = FALSE,
+      x = rep((- 1 / theta_1 * log(1 / threshold - 1)), n_points^2),
+      y = yz_vert[, 1],
+      z = 0L,
+      marker = list(
+        type = "marker",
+        mode = "scatter3d",
+        color = "black",
+        size = 2L),
+      showlegend = FALSE)
+  
+}
+
+p_4 <- add_vertical_hyperplane(
+  p_1 %>%
+  layout(
+    scene = list(camera = list(eye = list(x = -0.3, y = 3, z = 1)))))
+
+p_4 <- add_vertical_hyperplane(p_4, threshold = 0.25)
+p_4 <- add_vertical_hyperplane(p_4, threshold = 0.75)
+
+p_1
+p_2
+p_3
+p_4
+```
+
+c) Derive the equation for the decision boundary hyperplane if we choose $\alpha = 0.5$.
+
+d) Explain when it might be sensible to set $\alpha$ to 0.5.
+
+::: {.content-visible when-profile="solution"}
+<details> 
+<summary>**Solution**</summary>
+<!-- ::: {.panel-tabset} -->
+</details> 
+:::
