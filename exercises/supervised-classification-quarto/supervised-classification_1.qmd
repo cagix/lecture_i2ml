@@ -10,7 +10,10 @@ subtitle: "[Introduction to Machine Learning](https://slds-lmu.github.io/i2ml/)"
 :::
 
 ## Exercise 1: Logistic vs Softmax Regression [only for lecture group A]
-Exercise 1: Logistic vs Softmax Regression [only for lecture group A]
+
+::: {.callout-note title="Learning goals" icon=false}
+TBD
+:::
 
 Binary logistic regression is a special case of multiclass logistic, or softmax, regression. The softmax function is the multiclass analogue to the logistic function, transforming scores $\thetab^\top \xv$ to values in the range [0, 1] that sum to one. The softmax function is defined as:
 
@@ -20,9 +23,6 @@ $$
 
 Show that logistic and softmax regression are equivalent for $g = 2$.
 
-::: {.callout-note title="Learning goals" icon=false}
-TBD
-:::
 
 ::: {.content-visible when-profile="solution"}
 <details> 

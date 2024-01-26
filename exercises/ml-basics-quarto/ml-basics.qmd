@@ -10,6 +10,11 @@ subtitle: "[Introduction to Machine Learning](https://slds-lmu.github.io/i2ml/)"
 :::
 
 ## Exercise 1: Car Price Prediction
+
+::: {.callout-note title="Learning goals" icon=false}
+TBD
+:::
+
 Imagine you work at a second-hand car dealer and are tasked with finding 
 for-sale vehicles your company can acquire at a reasonable price. You decide to 
 address this challenge in a data-driven manner and develop a model that predicts 
@@ -39,10 +44,6 @@ adequate market prices (in EUR) from vehicles’ properties.
    it. 
 
 Congratulations, you just designed your first machine learning project!
-
-::: {.callout-note title="Learning goals" icon=false}
-TBD
-:::
 
 ::: {.content-visible when-profile="solution"}
 <details> 
