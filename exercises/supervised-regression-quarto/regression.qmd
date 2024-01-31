@@ -8,7 +8,6 @@ notebook-view:
   - notebook: _python.ipynb
     title: "Notebook for Python"
     url: "https://github.com/slds-lmu/lecture_i2ml/blob/new-ex-regr-quarto/exercises/supervised-regression-quarto/_python.ipynb"  
-
 ---
 
 ::: {.content-hidden when-format="pdf"}
@@ -246,9 +245,7 @@ We can minimize this risk using gradient descent. Derive the gradient of the emp
 ::: {.content-visible when-profile="solution"}
 <details> 
 <summary>**Solution**</summary>
-We can 
-find the gradient just as we did for an intermediate result when we derived 
-the least-squares estimator:
+We can find the gradient just as we did for an intermediate result when we derived the least-squares estimator:
 
 \begin{align*}
   \nabla_{\thetab} \risket &=
@@ -259,6 +256,7 @@ the least-squares estimator:
   &= 2 \cdot \left( - \Xmat^\top \yv + \Xmat^\top 
   \Xmat \thetab \right)
 \end{align*}
+
 </details>
 :::
 :::
