@@ -35,16 +35,14 @@ You are given the following table with the target variable `Banana`:
 | 7   |  green   |  oblong  |  domestic  |  no       |
 | 8   |  red     |  round   |  imported  |  no       |
 
-a) We want to use a Naive Bayes classifier to predict whether a new fruit is a `Banana` or not. Estimate the posterior probability $\hat\pi(\xv_{\ast})$ for a new observation $\xv_{\ast} = (\text{yellow}, \text{round}, \text{imported})$. How would you classify the object?
-b) Assume you have an additional feature `Length` that measures the length in cm. Describe in 1-2 sentences how you would handle this numeric feature with Naive Bayes.
+***
+We want to use a Naive Bayes classifier to predict whether a new fruit is a `Banana` or not. Estimate the posterior probability $\hat\pi(\xv_{\ast})$ for a new observation $\xv_{\ast} = (\text{yellow}, \text{round}, \text{imported})$. How would you classify the object?
 
 ::: {.content-visible when-profile="solution"}
 <details> 
 <summary>**Solution**</summary>
-<!-- ::: {.panel-tabset} -->
 
-
-a) When using the naive Bayes classifier, the features $\xv := (x_\text{Color},x_\text{Form},x_\text{Origin})$ are assumed to be conditionally independent of each other, given the category $y = k \in \{\text{yes}, \text{no}\}$, s.t.
+When using the naive Bayes classifier, the features $\xv := (x_\text{Color},x_\text{Form},x_\text{Origin})$ are assumed to be conditionally independent of each other, given the category $y = k \in \{\text{yes}, \text{no}\}$, s.t.
 
 $$
 \P(\xv ~|~ y = k) =
@@ -114,10 +112,20 @@ and check our calculations against the corresponding results:
 ### R
 {{< embed _r_2.ipynb echo=true >}}
 ### Python
-{{< embed _python_2.ipynb echo=true >}}
+{{< embed _python_2.ipynb#naivebayes echo=true >}}
 :::
 
-b) Before, we only had categorical features and could use the empirical frequencies as our parameters in a categorical distribution. For the distribution of a numerical feature, given the the category, we need to define a probability distribution with continuous support. A popular choice is to use Gaussian distributions. For example, for the information $x_\text{Length}$ we could assume that 
+</details> 
+:::
+
+***
+Assume you have an additional feature `Length` that measures the length in cm. Describe in 1-2 sentences how you would handle this numeric feature with Naive Bayes.
+
+::: {.content-visible when-profile="solution"}
+<details> 
+<summary>**Solution**</summary>
+
+Before, we only had categorical features and could use the empirical frequencies as our parameters in a categorical distribution. For the distribution of a numerical feature, given the the category, we need to define a probability distribution with continuous support. A popular choice is to use Gaussian distributions. For example, for the information $x_\text{Length}$ we could assume that 
 
 $$
 \P(x_\text{Length} ~|~ y = \text{yes}) \sim \normal(\mu_\text{yes}, 
