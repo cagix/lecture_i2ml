@@ -68,6 +68,7 @@ Instantiate a regression tree learner. What are the different settings for this 
 <details> 
 <summary>*Hint*</summary>
 ::: {.panel-tabset}
+
 ### R
 Use `lrn("regr.rpart")` (`mlr3::mlr_learners$keys()` shows all available learners).
 
@@ -118,6 +119,7 @@ Consider the above linear regression task. How will the model
 ::: {.content-visible when-profile="solution"}
 <details> 
 <summary>**Solution**</summary>
+
 $L2$ loss penalizes vertical distances to the regression line *quadratically*, while $L1$ only considers the *absolute*
 distance. As the outlier point lies pretty far from the remaining training data, it will have a large loss with $L2$,
 and the regression line will pivot to the bottom right to minimize the resulting empirical risk. A model trained
