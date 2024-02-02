@@ -74,3 +74,5 @@ NAMESPACE
 .idea/*
 *.pkl
 exercises/.quarto/
+exercises/*/*-preview.html
+exercises/*/*.out.ipynb
