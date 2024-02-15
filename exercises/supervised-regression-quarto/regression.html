@@ -3308,7 +3308,7 @@ Learning goals
 <p>TBD</p>
 </div>
 </div>
-<p>Throughout the lecture, we will frequently use the <code>R</code> package <code>mlr3</code>, resp. the <code>Python</code> package <code>sklearn</code>, and its descendants, providing an integrated ecosystem for all common machine learning tasks. Let’s recap the HRO principle and see how it is reflected in either <code>mlr3</code> or <code>sklearn</code>. An overview of the most important objects and their usage, illustrated with numerous examples, can be found at <a href="https://mlr3book.mlr-org.com/">the <code>mlr3</code> book</a> and <a href="https://scikit-learn.org/stable/index.html">the <code>scikit</code> documentation</a>.</p>
+<p>Throughout the lecture, we will frequently use the <code>R</code> package <code>mlr3</code>, resp. the <code>Python</code> package <code>sklearn</code>, and its descendants, providing an integrated ecosystem for all common machine learning tasks. Let’s recap the HRO principle and see how it is reflected in either <code>mlr3</code> or <code>sklearn</code>. An overview of the most important objects and their usage, illustrated with numerous examples, can be found at <a href="https://mlr3book.mlr-org.com/">the <code>mlr3</code> book</a> and<a href="https://scikit-learn.org/stable/index.html">the <code>scikit</code> documentation</a>.</p>
 <hr>
 <p>How are the key concepts (i.e., hypothesis space, risk and optimization) you learned about in the lecture videos implemented?</p>
 <details>
@@ -3600,12 +3600,14 @@ Learning goals
 <summary>
 <strong>Solution</strong>
 </summary>
-The Huber loss combines the respective advantages of <span class="math inline">\(L1\)</span> and <span class="math inline">\(L2\)</span> loss: it is smooth and (once) differentiable like <span class="math inline">\(L2\)</span> but does not punish larger residuals as severely, leading to more robustness. It is simply a (weighted) piecewise combination of both losses, where <span class="math inline">\(\epsilon\)</span> marks where <span class="math inline">\(L2\)</span> transits to <span class="math inline">\(L1\)</span> loss. The exact definition is: <span class="math display">\[
-  L\left(y, f(\mathbf{x})\right)= \begin{cases}
-    \frac{1}{2}(y - f(\mathbf{x}))^2  &amp; \text{ if } |y - f(\mathbf{x})|\le \epsilon \\
-    \epsilon |y - f(\mathbf{x})|-\frac{1}{2}\epsilon^2 \quad &amp; \text{ otherwise }
-    \end{cases}, \quad \epsilon &gt; 0
-  \]</span> In the plot we can see how the parabolic shape of the loss around 0 evolves into an absolute-value function at <span class="math inline">\(|y - f(\mathbf{x})|&gt; \epsilon = 5\)</span>.
+<p>The Huber loss combines the respective advantages of <span class="math inline">\(L1\)</span> and <span class="math inline">\(L2\)</span> loss: it is smooth and (once) differentiable like <span class="math inline">\(L2\)</span> but does not punish larger residuals as severely, leading to more robustness. It is simply a (weighted) piecewise combination of both losses, where <span class="math inline">\(\epsilon\)</span> marks where <span class="math inline">\(L2\)</span> transits to <span class="math inline">\(L1\)</span> loss. The exact definition is:</p>
+<p><span class="math display">\[
+L\left(y, f(\mathbf{x})\right)= \begin{cases}
+\frac{1}{2}(y - f(\mathbf{x}))^2  &amp; \text{ if } |y - f(\mathbf{x})|\le \epsilon \\
+\epsilon |y - f(\mathbf{x})|-\frac{1}{2}\epsilon^2 \quad &amp; \text{ otherwise }
+\end{cases}, \quad \epsilon &gt; 0
+\]</span></p>
+In the plot we can see how the parabolic shape of the loss around 0 evolves into an absolute-value function at <span class="math inline">\(|y - f(\mathbf{x})|&gt; \epsilon = 5\)</span>.
 </details>
 </section>
 <section id="exercise-3-polynomial-regression" class="level2">
@@ -3623,16 +3625,18 @@ Learning goals
 <p>TBD</p>
 </div>
 </div>
-<p>Assume the following (noisy) data-generating process from which we have observed 50 realizations: <span class="math display">\[y = -3 + 5 \cdot
-\sin(0.4 \pi x) + \epsilon\]</span> with <span class="math inline">\(\epsilon \, \sim \mathcal{N}(0, 1)\)</span>.</p>
+<p>Assume the following (noisy) data-generating process from which we have observed 50 realizations: <span class="math display">\[y = -3 + 5 \cdot \sin(0.4 \pi x) + \epsilon\]</span> with <span class="math inline">\(\epsilon \, \sim \mathcal{N}(0, 1)\)</span>.</p>
 <hr>
 <p>We decide to model the data with a cubic polynomial (including intercept term). State the corresponding hypothesis space.</p>
 <details>
 <summary>
 <strong>Solution</strong>
 </summary>
-Cubic means degree 3, so our hypothesis space will look as follows: <span class="math display">\[\mathcal{H}= \{ f(\mathbf{x}~|~ \boldsymbol{\theta})= \theta_0 + \theta_1 x + \theta_2 x^2 + \theta_3 x^3
-~|~ (\theta_0, \theta_1, \theta_2, \theta_3)^\top \in \mathbb{R}^4 \}\]</span>
+<p>Cubic means degree 3, so our hypothesis space will look as follows:</p>
+<p><span class="math display">\[
+\mathcal{H}= \{ f(\mathbf{x}~|~ \boldsymbol{\theta})= \theta_0 + \theta_1 x + \theta_2 x^2 + \theta_3 x^3
+~|~ (\theta_0, \theta_1, \theta_2, \theta_3)^\top \in \mathbb{R}^4 \}
+\]</span></p>
 </details>
 <hr>
 <p>State the empirical risk w.r.t. <span class="math inline">\(\boldsymbol{\theta}\)</span> for a member of the hypothesis space. Use <span class="math inline">\(L2\)</span> loss and be as explicit as possible.</p>
@@ -3640,9 +3644,12 @@ Cubic means degree 3, so our hypothesis space will look as follows: <span class=
 <summary>
 <strong>Solution</strong>
 </summary>
-The empirical risk is: <span class="math display">\[\mathcal{R}_{\text{emp}}(\boldsymbol{\theta})= \sum_{i = 1}^{50} \left(y^{(i)}- \left[ \theta_0 + \theta_1 x^{(i)} +
+<p>The empirical risk is:</p>
+<p><span class="math display">\[
+\mathcal{R}_{\text{emp}}(\boldsymbol{\theta})= \sum_{i = 1}^{50} \left(y^{(i)}- \left[ \theta_0 + \theta_1 x^{(i)} +
 \theta_2 \left( x^{(i)} \right)^2 + \theta_3 \left( x^{(i)} \right)^3 \right]
-\right)^2\]</span>
+\right)^2
+\]</span></p>
 </details>
 <hr>
 <div class="callout callout-style-default callout-tip no-icon callout-titled" title="Only for lecture group A">
@@ -3664,7 +3671,7 @@ Only for lecture group A
 <strong>Solution</strong>
 </summary>
 <p>We can find the gradient just as we did for an intermediate result when we derived the least-squares estimator:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
   \nabla_{\boldsymbol{\theta}} \mathcal{R}_{\text{emp}}(\boldsymbol{\theta})&amp;=
   \frac{\partial{}}{\partial \boldsymbol{\theta}} \left \| \mathbf{y}- \mathbf{X}\boldsymbol{\theta}\right \|_2^2 \\
   &amp;= \frac{\partial{}}{\partial \boldsymbol{\theta}} \left( \left(\mathbf{y}- \mathbf{X}\boldsymbol{\theta}\right)^\top
@@ -3672,7 +3679,7 @@ Only for lecture group A
   &amp;= - 2 \mathbf{X}^\top \mathbf{y}+ 2 \mathbf{X}^\top \mathbf{X}\boldsymbol{\theta}\\
   &amp;= 2 \cdot \left( - \mathbf{X}^\top \mathbf{y}+ \mathbf{X}^\top
   \mathbf{X}\boldsymbol{\theta}\right)
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 </details>
 <hr>
 <div class="callout callout-style-default callout-tip no-icon callout-titled" title="Only for lecture group A">
@@ -3694,20 +3701,22 @@ Only for lecture group A
 <strong>Solution</strong>
 </summary>
 <p>Recall that the idea of gradient descent (!) is to traverse the risk surface in the direction of the gradient as we are in search for the minimum. Therefore, we will update our current parameter set <span class="math inline">\(\boldsymbol{\theta}^{[t]}\)</span> with the negative gradient of the current empirical risk w.r.t. <span class="math inline">\(\boldsymbol{\theta}\)</span>, scaled by learning rate (or step size) <span class="math inline">\(\alpha\)</span>:</p>
-<p><span class="math display">\[\boldsymbol{\theta}^{[t +1]}= \boldsymbol{\theta}^{[t]}- \alpha \cdot \nabla_{\boldsymbol{\theta}} \mathcal{R}_{\text{emp}}(\boldsymbol{\theta}^{[t]}).\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{\theta}^{[t +1]}= \boldsymbol{\theta}^{[t]}- \alpha \cdot \nabla_{\boldsymbol{\theta}} \mathcal{R}_{\text{emp}}(\boldsymbol{\theta}^{[t]}).
+\]</span></p>
 <p>Note that the <span class="math inline">\(L2\)</span>-induced multiplicative constant of 2 in the gradient can simply be absorbed by <span class="math inline">\(\tilde \alpha := \tfrac{1}{2} \alpha\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
-    \underbrace{\boldsymbol{\theta}^{[t +1]}}_{p \times 1} &amp;= \underbrace{\boldsymbol{\theta}^{[t]}}_{p \times 1} -
-    \tilde \alpha \cdot \left( - \underbrace{\mathbf{X}^\top \phantom{y}}_{
-    p \times n} \underbrace{\mathbf{y}}_{n \times 1} + \underbrace{
-    \mathbf{X}^\top \mathbf{X}\phantom{y}}_{p \times p}
-    \underbrace{\boldsymbol{\theta}^{[t]}\phantom{y}}_{p \times 1}
-    \right) \\
-    \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t + 1]} &amp;=
-    \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t]} - \tilde \alpha
-    \cdot \left( - \mathbf{X}^\top \mathbf{y}+ \mathbf{X}^\top \mathbf{X}
-    \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t]} \right)
-  \end{align*}\]</span></p>
+  \underbrace{\boldsymbol{\theta}^{[t +1]}}_{p \times 1} &amp;= \underbrace{\boldsymbol{\theta}^{[t]}}_{p \times 1} -
+  \tilde \alpha \cdot \left( - \underbrace{\mathbf{X}^\top \phantom{y}}_{
+  p \times n} \underbrace{\mathbf{y}}_{n \times 1} + \underbrace{
+  \mathbf{X}^\top \mathbf{X}\phantom{y}}_{p \times p}
+  \underbrace{\boldsymbol{\theta}^{[t]}\phantom{y}}_{p \times 1}
+  \right) \\
+  \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t + 1]} &amp;=
+  \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t]} - \tilde \alpha
+  \cdot \left( - \mathbf{X}^\top \mathbf{y}+ \mathbf{X}^\top \mathbf{X}
+  \begin{pmatrix} \theta_1 \\ \theta_2 \\ \vdots \\ \theta_p \end{pmatrix}^{[t]} \right)
+\end{align*}\]</span></p>
 <p>What actually happens here: we update each component of our current parameter vector <span class="math inline">\(\boldsymbol{\theta}^{[t]}\)</span> in the of the negative gradient, i.e., following the steepest downward slope, and also by an that depends on the value of the gradient.</p>
 In order to see what that means it is helpful to recall that the gradient <span class="math inline">\(\nabla_{\boldsymbol{\theta}} \mathcal{R}_{\text{emp}}(\boldsymbol{\theta})\)</span> tells us about the effect (infinitesimally small) changes in <span class="math inline">\(\boldsymbol{\theta}\)</span> have on <span class="math inline">\(\mathcal{R}_{\text{emp}}(\boldsymbol{\theta})\)</span>. Therefore, gradient updates focus on influential components, and we proceed more quickly along the important dimensions.
 </details>
