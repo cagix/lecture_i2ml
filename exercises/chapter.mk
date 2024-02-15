@@ -31,3 +31,7 @@ texclean:
 	rm -rf *.synctex.gz
 	rm -rf *-concordance.tex
 	rm -rf *.tex
+
+qmdclean:
+	rm -rf *preview.html
+	rm -rf *out.ipynb
