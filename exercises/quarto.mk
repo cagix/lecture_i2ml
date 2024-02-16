@@ -6,6 +6,7 @@ qmdrender:
 	done
 
 qmdclean:
+	rm -rf *_files
 	rm -rf *preview.html
 	rm -rf *out.ipynb
 
