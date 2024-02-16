@@ -3226,7 +3226,7 @@ window.Quarto = {
   <li><a href="#exercise-3-polynomial-regression" id="toc-exercise-3-polynomial-regression" class="nav-link" data-scroll-target="#exercise-3-polynomial-regression">Exercise 3: Polynomial regression</a></li>
   <li><a href="#exercise-4-predicting-abalone" id="toc-exercise-4-predicting-abalone" class="nav-link" data-scroll-target="#exercise-4-predicting-abalone">Exercise 4: Predicting <code>abalone</code></a></li>
   </ul>
-<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="_r-preview.html"><i class="bi bi-journal-code"></i>Notebook for R</a></li><li><a href="_python-preview.html"><i class="bi bi-journal-code"></i>Notebook for Python</a></li></ul></div></nav>
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="sol_regression_R-preview.html"><i class="bi bi-journal-code"></i>Notebook for R</a></li><li><a href="sol_regression_py-preview.html"><i class="bi bi-journal-code"></i>Notebook for Python</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -3355,7 +3355,7 @@ Learning goals
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-embed-nb-cell">
-<div id="hro-objects" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-11-06T15:54:34.964468968Z&quot;,&quot;start_time&quot;:&quot;2023-11-06T15:54:34.918473806Z&quot;}" data-outputid="d112da7f-6f97-4503-87bf-fc83a10fe8ea" data-execution_count="23">
+<div id="hro-objects" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You initialize your &quot;learner&quot; or model with its properties defined by the</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters, e.g.,:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
@@ -3414,8 +3414,8 @@ Model MSE:  15.461825608784347</code></pre>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="quarto-embed-nb-cell">
-<div id="hro-task" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-11-06T15:59:49.752734Z&quot;,&quot;start_time&quot;:&quot;2023-11-06T15:59:49.709545913Z&quot;}" data-outputid="4537e8c1-2543-4b62-cd79-0a2ea76b444f" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<div id="hro-task" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris() <span class="co"># function to import iris data set as type &quot;utils.Bunch&quot; with sklearn</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> iris.feature_names</span>
@@ -3514,15 +3514,13 @@ Type of X and y
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="quarto-embed-nb-cell">
-<div id="hro-learner" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2023-11-06T16:06:31.753055060Z&quot;,&quot;start_time&quot;:&quot;2023-11-06T16:06:31.707252693Z&quot;}" data-outputid="4286b0df-816e-4702-f1e9-e109376f92b3" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># help(DecisionTreeRegressor)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect regression tree learner</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>rtree <span class="op">=</span> DecisionTreeRegressor() <span class="co"># default setting</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rtree)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List configurable hyperparameters</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>[<span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">&#39;</span>) <span class="cf">for</span> k, v <span class="kw">in</span> rtree.get_params().items()][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="hro-learner" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect regression tree learner</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rtree <span class="op">=</span> DecisionTreeRegressor() <span class="co"># default setting</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rtree)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># List configurable hyperparameters</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>[<span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">&#39;</span>) <span class="cf">for</span> k, v <span class="kw">in</span> rtree.get_params().items()][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>DecisionTreeRegressor()
 ccp_alpha: 0.0

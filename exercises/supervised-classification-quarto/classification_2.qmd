@@ -2,10 +2,10 @@
 title: "Exercise 4 -- Classification II"
 subtitle: "[Introduction to Machine Learning](https://slds-lmu.github.io/i2ml/)"
 notebook-view:
-  - notebook: _r_2.ipynb
+  - notebook: sol_classification_2_R.ipynb
     title: "Notebook for R"
     url: "https://github.com/slds-lmu/lecture_i2ml/blob/new-ex-regr-quarto/exercises/supervised-regression-quarto/_r.ipynb"  
-  - notebook: _python_2.ipynb
+  - notebook: sol_classification_2_py.ipynb
     title: "Notebook for Python"
     url: "https://github.com/slds-lmu/lecture_i2ml/blob/new-ex-regr-quarto/exercises/supervised-regression-quarto/_python.ipynb"  
 ---
@@ -20,7 +20,7 @@ notebook-view:
 <summary>*Hint*</summary>
 If you work with `Python`, import the following:
 
-{{< embed _python_2.ipynb#import echo=true >}}
+{{< embed sol_classification_2_py.ipynb#import echo=true >}}
 
 </details>
 
@@ -118,9 +118,9 @@ and check our calculations against the corresponding results:
 
 ::: {.panel-tabset}
 ### R
-{{< embed _r_2.ipynb#naivebayes echo=true >}}
+{{< embed sol_classification_2_R.ipynb#naivebayes echo=true >}}
 ### Python
-{{< embed _python_2.ipynb#naivebayes echo=true >}}
+{{< embed sol_classification_2_py.ipynb#naivebayes echo=true >}}
 :::
 
 </details> 
@@ -210,9 +210,9 @@ We see that the variances in classes 1 and 2 are similar and also much smaller t
 
 ::: {.panel-tabset}
 ### R
-{{< embed _r_2.ipynb#discriminantanalysis echo=true >}}
+{{< embed sol_classification_2_R.ipynb#discriminantanalysis echo=true >}}
 ### Python
-{{< embed _python_2.ipynb#discriminantanalysis echo=true >}}
+{{< embed sol_classification_2_py.ipynb#discriminantanalysis echo=true >}}
 :::
 
 </details> 
@@ -273,27 +273,27 @@ First, visualize the simulated `cassini` data:
 
 ::: {.panel-tabset}
 ### R
-{{< embed _r_2.ipynb#decb-vis echo=true >}}
+{{< embed sol_classification_2_R.ipynb#decb-vis echo=true >}}
 ### Python
-{{< embed _python_2.ipynb#decb-vis echo=true >}}
+{{< embed sol_classification_2_py.ipynb#decb-vis echo=true >}}
 :::
 
 Then, define the learners (and the `task` for `R` ) and train the models:
 
 ::: {.panel-tabset}
 ### R
-{{< embed _r_2.ipynb#decb-learn echo=true >}}
+{{< embed sol_classification_2_R.ipynb#decb-learn echo=true >}}
 ### Python
-{{< embed _python_2.ipynb#decb-learn echo=true >}}
+{{< embed sol_classification_2_py.ipynb#decb-learn echo=true >}}
 :::
 
 Lastly, plot their decision boundaries:
 
 ::: {.panel-tabset}
 ### R
-{{< embed _r_2.ipynb#decb-plot echo=true >}}
+{{< embed sol_classification_2_R.ipynb#decb-plot echo=true >}}
 ### Python
-{{< embed _python_2.ipynb#decb-plot echo=true >}}
+{{< embed sol_classification_2_py.ipynb#decb-plot echo=true >}}
 :::
 
 We see how LDA, with its confinement to linear decision boundaries, is not able to classify the data very well. QDA and NB, on the other hand, get the shape of the boundaries right. It also becomes obvious that NB is a quadratic classifier just like QDA - their decision surfaces look pretty much alike.
