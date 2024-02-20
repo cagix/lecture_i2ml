@@ -16,4 +16,3 @@ qmdclean:
 # rule for single file ; e.g. make classification_1
 %:
 	quarto render $@.qmd --profile=solution
-	qmdclean
