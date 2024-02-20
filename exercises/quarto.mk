@@ -1,10 +1,18 @@
-.PHONY: all qmdrender qmdclean
+.PHONY: html pdf qmdhtml qmdpdf qmdclean
 
-all: qmdrender qmdclean
+html: qmdhtml qmdclean
 
-qmdrender:
+pdf: qmdpdf qmdclean
+
+
+qmdhtml:
 	for file in *.qmd; do \
 		quarto render $$file --profile=solution; \
+	done
+
+qmdpdf:
+	for file in *.qmd; do \
+		quarto render $$file --profile=solution --to pdf; \
 	done
 
 qmdclean:
