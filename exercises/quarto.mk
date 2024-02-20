@@ -1,4 +1,6 @@
-all: qmdrender qmdclean
+.PHONY: all qmdrender qmdclean
+
+all: qmdclean qmdrender qmdclean
 
 qmdrender:
 	for file in *.qmd; do \
