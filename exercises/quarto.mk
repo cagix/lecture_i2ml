@@ -1,6 +1,6 @@
 .PHONY: all qmdrender qmdclean
 
-all: qmdclean qmdrender qmdclean
+all: qmdrender qmdclean
 
 qmdrender:
 	for file in *.qmd; do \
@@ -11,6 +11,7 @@ qmdclean:
 	rm -rf *_files
 	rm -rf *preview.html
 	rm -rf *out.ipynb
+	rm -rf ../.quarto
 
 # rule for single file ; e.g. make classification_1
 %:

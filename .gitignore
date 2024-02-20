@@ -73,6 +73,7 @@ code-demos/code_demo_limo.R
 NAMESPACE
 .idea/*
 *.pkl
+
 exercises/.quarto/
 exercises/*/*-preview.html
 exercises/*/*.out.ipynb
