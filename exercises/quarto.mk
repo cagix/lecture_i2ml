@@ -1,8 +1,8 @@
-.PHONY: html pdf qmdhtml qmdpdf qmdclean
+.PHONY: html pdf qmdhtml qmdpdf clean
 
-html: qmdhtml qmdclean
+html: qmdhtml clean
 
-pdf: qmdpdf qmdclean
+pdf: qmdpdf clean
 
 
 qmdhtml:
@@ -15,7 +15,7 @@ qmdpdf:
 		quarto render $$file --profile=solution --to pdf; \
 	done
 
-qmdclean:
+clean:
 	rm -rf *_files
 	rm -rf *preview.html
 	rm -rf *out.ipynb

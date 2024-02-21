@@ -5,3 +5,4 @@ dependencies:
  - r-base=4.1
  - r-tidyverse
  - r-mlr3verse
+ - r-mlbench
