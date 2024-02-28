@@ -20,7 +20,7 @@ notebook-view:
 <summary>*Hint*</summary>
 If you work with `Python`, import the following:
 
-{{< embed sol_classification_2_py.ipynb#import echo=true >}}
+{{< embed ex_classification_2_py.ipynb#import echo=true >}}
 
 </details>
 
