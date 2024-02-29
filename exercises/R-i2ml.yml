@@ -6,3 +6,4 @@ dependencies:
  - r-tidyverse
  - r-mlr3verse
  - r-mlbench
+ - r-rattle
