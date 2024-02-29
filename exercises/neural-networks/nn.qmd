@@ -261,7 +261,7 @@ Sketch the neural network you just created (perhaps without realizing it).
 
 We created a feedforward neural network with two input neurons, two hidden neurons (each performing one intermediate logistic regression), and one output neuron. The biases are depicted as 1-neurons:
 
-![Feedforward neural network](nn.png){width=40%}
+![Feedforward neural network](figure/nn.png){width=40%}
 </details> 
 :::
 
